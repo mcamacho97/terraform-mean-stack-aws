@@ -41,3 +41,4 @@ terraform.rc
 
 # Terraform backend
 backend.hcl
+keys/*.pem
