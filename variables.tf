@@ -64,17 +64,3 @@ variable "node_instance_count" {
   description = "Number of Node.js instances."
   type        = number
 }
-
-###############################################
-# Operating System
-###############################################
-
-variable "ubuntu_ami_owner" {
-  description = "Canonical AWS Account ID."
-  type        = string
-}
-
-variable "ubuntu_ami_name" {
-  description = "Ubuntu AMI name filter."
-  type        = string
-}
