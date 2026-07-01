@@ -31,11 +31,3 @@ availability_zone_2 = "us-east-1b"
 instance_type = "t2.micro"
 
 node_instance_count = 2
-
-###############################################
-# Ubuntu AMI
-###############################################
-
-ubuntu_ami_owner = "099720109477"
-
-ubuntu_ami_name = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
