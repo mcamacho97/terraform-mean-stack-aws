@@ -117,3 +117,26 @@ module "mongodb" {
   user_data_file = "${path.root}/userdata/mongo.sh"
 
 }
+
+module "alb" {
+
+  source = "./modules/alb"
+
+  project_name = var.project_name
+
+  vpc_id = module.network.vpc_id
+
+  public_subnet_ids = [
+    module.network.public_subnet_1_id,
+    module.network.public_subnet_2_id
+  ]
+
+  alb_security_group_id = module.security.alb_security_group_id
+
+  target_instances = {
+    node1 = module.node_1.instance_id
+    node2 = module.node_2.instance_id
+  }
+
+
+}
