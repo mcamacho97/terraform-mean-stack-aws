@@ -40,58 +40,80 @@ module "iam" {
 
 }
 
-# module "node_servers" {
+module "node_1" {
 
-#    count = var.node_instance_count
+  source = "./modules/ec2-instance"
 
-#   source = "./modules/ec2-instance"
+  name = "${var.project_name}-node-1"
 
-#   name = "${var.project_name}-node-${count.index + 1}"
+  ami_id = data.aws_ami.ubuntu.id
 
-#   ami_id = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
 
-#   instance_type = var.instance_type
+  subnet_id = module.network.public_subnet_1_id
 
-#   subnet_id = count.index == 0
-#     ? module.network.public_subnet_1_id
-#     : module.network.public_subnet_2_id
+  security_group_ids = [
+    module.security.node_security_group_id
+  ]
 
-#   security_group_ids = [
-#     module.security.node_security_group_id
-#   ]
+  associate_public_ip = true
 
-#   associate_public_ip = true
+  key_name = module.keypair.key_name
 
-#   key_name = module.keypair.key_name
+  iam_instance_profile = module.iam.instance_profile_name
 
-#   iam_instance_profile = module.iam.instance_profile_name
+  user_data_file = "${path.root}/userdata/node.sh"
 
-#   user_data = file("${path.module}/userdata/node.sh")
+}
 
-# }
+module "node_2" {
 
-# module "mongodb" {
+  source = "./modules/ec2-instance"
 
-#   source = "./modules/ec2-instance"
+  name = "${var.project_name}-node-2"
 
-#   name = "${var.project_name}-mongodb"
+  ami_id = data.aws_ami.ubuntu.id
 
-#   ami_id = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
 
-#   instance_type = var.instance_type
+  subnet_id = module.network.public_subnet_2_id
 
-#   subnet_id = module.network.private_subnet_id
+  security_group_ids = [
+    module.security.node_security_group_id
+  ]
 
-#   security_group_ids = [
-#     module.security.mongo_security_group_id
-#   ]
+  associate_public_ip = true
 
-#   associate_public_ip = false
+  key_name = module.keypair.key_name
 
-#   key_name = module.keypair.key_name
+  iam_instance_profile = module.iam.instance_profile_name
 
-#   iam_instance_profile = module.iam.instance_profile_name
+  user_data_file = "${path.root}/userdata/node.sh"
 
-#   user_data = file("${path.module}/userdata/mongo.sh")
+}
 
-# }
+module "mongodb" {
+
+  source = "./modules/ec2-instance"
+
+  name = "${var.project_name}-mongodb"
+
+  ami_id = data.aws_ami.ubuntu.id
+
+  instance_type = var.instance_type
+
+  subnet_id = module.network.private_subnet_id
+
+  security_group_ids = [
+    module.security.mongo_security_group_id
+  ]
+
+  associate_public_ip = false
+
+  key_name = module.keypair.key_name
+
+  iam_instance_profile = module.iam.instance_profile_name
+
+  user_data_file = "${path.root}/userdata/mongo.sh"
+
+}

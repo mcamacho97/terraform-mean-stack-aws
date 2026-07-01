@@ -1,6 +1,5 @@
-
 variable "name" {
-  description = "Instance name."
+  description = "EC2 instance name."
   type        = string
 }
 
@@ -24,22 +23,28 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
+variable "associate_public_ip" {
+  description = "Associate a public IP."
+  type        = bool
+}
+
 variable "key_name" {
   description = "EC2 Key Pair."
   type        = string
 }
 
-variable "user_data" {
-  description = "User data script."
-  type        = string
-}
-
-variable "associate_public_ip" {
-  description = "Associate Public IP."
-  type        = bool
-}
-
 variable "iam_instance_profile" {
   description = "IAM Instance Profile."
   type        = string
+}
+
+variable "user_data_file" {
+  description = "Path to the user_data script."
+  type        = string
+}
+
+variable "volume_size" {
+  description = "Root EBS volume size."
+  type        = number
+  default     = 20
 }
