@@ -1,44 +1,97 @@
-# Created by https://www.toptal.com/developers/gitignore/api/terraform
-# Edit at https://www.toptal.com/developers/gitignore?templates=terraform
+###############################################
+# Terraform
+###############################################
 
-### Terraform ###
-# Local .terraform directories
-**/.terraform/*
+.terraform/
+.terraform.lock.hcl
 
-# .tfstate files
 *.tfstate
 *.tfstate.*
+*.tfplan
 
-# Crash log files
 crash.log
 crash.*.log
 
-# Exclude all .tfvars files, which are likely to contain sensitive data, such as
-# password, private keys, and other secrets. These should not be part of version
-# control as they are data points which are potentially sensitive and subject
-# to change depending on the environment.
-*.tfvars
-*.tfvars.json
+###############################################
+# Terraform Variables
+###############################################
 
-# Ignore override files as they are usually used to override resources locally and so
-# are not checked in
+terraform.tfvars
+terraform.tfvars.json
+
+*.auto.tfvars
+*.auto.tfvars.json
+
+###############################################
+# Terraform Backend
+###############################################
+
+backend.hcl
+
+###############################################
+# Override Files
+###############################################
+
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
 
-# Include override files you do wish to add to version control using negated pattern
-# !example_override.tf
+###############################################
+# Terraform CLI
+###############################################
 
-# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
-# example: *tfplan*
-
-# Ignore CLI configuration files
 .terraformrc
 terraform.rc
 
-# End of https://www.toptal.com/developers/gitignore/api/terraform
+###############################################
+# SSH Keys
+###############################################
 
-# Terraform backend
-backend.hcl
-keys/*.pem
+*.pem
+*.key
+keys/
+
+###############################################
+# Environment Variables
+###############################################
+
+.env
+.env.*
+
+###############################################
+# Logs
+###############################################
+
+*.log
+
+###############################################
+# IDE
+###############################################
+
+.vscode/
+.idea/
+
+###############################################
+# Operating System
+###############################################
+
+.DS_Store
+Thumbs.db
+
+###############################################
+# Backup Files
+###############################################
+
+*.bak
+*.backup
+*.tmp
+*.swp
+
+###############################################
+# Sensitive Files
+###############################################
+
+*.pfx
+*.crt
+*.cer
