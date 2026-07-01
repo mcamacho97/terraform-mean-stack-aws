@@ -1,7 +1,3 @@
-###############################################
-# General Configuration
-###############################################
-
 variable "project_name" {
   description = "Project name used as a prefix for AWS resources."
   type        = string
@@ -16,10 +12,6 @@ variable "aws_region" {
   description = "AWS region where the infrastructure will be deployed."
   type        = string
 }
-
-###############################################
-# Network Configuration
-###############################################
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC."
@@ -51,10 +43,6 @@ variable "availability_zone_2" {
   type        = string
 }
 
-###############################################
-# EC2 Configuration
-###############################################
-
 variable "instance_type" {
   description = "EC2 instance type."
   type        = string
@@ -63,4 +51,10 @@ variable "instance_type" {
 variable "node_instance_count" {
   description = "Number of Node.js instances."
   type        = number
+}
+
+
+variable "allowed_ssh_ip" {
+  description = "Public IP allowed to connect via SSH."
+  type        = string
 }

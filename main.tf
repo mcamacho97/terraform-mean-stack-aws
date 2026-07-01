@@ -15,3 +15,11 @@ module "network" {
   availability_zone_2 = var.availability_zone_2
 
 }
+
+module "security" {
+  source = "./modules/security"
+
+  project_name   = var.project_name
+  vpc_id         = module.network.vpc_id
+  allowed_ssh_ip = var.allowed_ssh_ip
+}

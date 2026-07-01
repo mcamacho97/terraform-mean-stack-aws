@@ -31,3 +31,5 @@ availability_zone_2 = "us-east-1b"
 instance_type = "t2.micro"
 
 node_instance_count = 2
+
+allowed_ssh_ip = "186.77.205.218/32"
